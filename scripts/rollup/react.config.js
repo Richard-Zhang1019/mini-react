@@ -14,11 +14,12 @@ export default [
     input: `${reactPath}/${module}`,
     output: {
       file: `${reactDistPath}/index.js`,
-      name: 'index.js',
+      name: 'react',
       format: 'umd'
     },
     plugins: [
       ...getRollupPlugins(),
+      // build生成package.json
       generatePkgJson({
         inputFolder: reactPath,
         outputFolder: reactDistPath,

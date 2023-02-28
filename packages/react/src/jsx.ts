@@ -71,3 +71,37 @@ export const jsx = (type: ElementType, config: any, ...child: any) => {
   // 把type key ref props传入ReactElement
   return ReactElement(type, key, ref, props)
 }
+
+export const jsxDev = (type: ElementType, config: any) => {
+  // 保存key ref props
+  let key: Key = null
+  let ref: Ref = null
+  const props: Props = {}
+
+  // 遍历属性
+  for (const prop in config) {
+    const val = config[prop]
+    // 如果是key
+    if (prop === 'key') {
+      // 并且key不为undefined 找到key
+      if (val !== 'undefined') {
+        key = val
+      }
+      continue
+    }
+    // 如果是ref
+    if (prop === 'ref') {
+      // 并且ref不为undefined 找到ref
+      if (val !== 'undefined') {
+        ref = val
+      }
+      continue
+    }
+    // 判断是否是原型上的属性
+    if ({}.hasOwnProperty.call(config, prop)) {
+      props[prop] = val
+    }
+  }
+  // 把type key ref props传入ReactElement
+  return ReactElement(type, key, ref, props)
+}
