@@ -18,18 +18,18 @@ export const createUpdate = <State>(action: Action<State>): Update<State> => {
 }
 
 // 创建updateQueue
-export const createUpdateQueue = <Action>() => {
+export const createUpdateQueue = <State>() => {
   return {
     shared: {
       pending: null
     }
-  } as UpdateQueue<Action>
+  } as UpdateQueue<State>
 }
 
 // 进入updateQueue
-export const enqueueUpdate = <Action>(
-  updateQueue: UpdateQueue<Action>,
-  update: Update<Action>
+export const enqueueUpdate = <State>(
+  updateQueue: UpdateQueue<State>,
+  update: Update<State>
 ) => {
   updateQueue.shared.pending = update
 }
@@ -40,8 +40,10 @@ export const processUpdateQueue = <State>(
   pendingUpdate: Update<State> | null
 ): { memoizedState: State } => {
   const result = { memoizedState: baseState }
+  // 如果有pendingUpdate存在，就执行action
   if (pendingUpdate !== null) {
     const action = pendingUpdate.action
+    // 如果action是一个函数，就执行action，否则直接返回action
     if (action instanceof Function) {
       result.memoizedState = action(baseState)
     } else {
