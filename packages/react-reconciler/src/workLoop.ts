@@ -60,7 +60,9 @@ function renderRoot(root: FiberRootNode) {
       workLoop()
       break
     } catch (err) {
-      console.warn('workLoop发生错误', err)
+      if (__DEV__) {
+        console.warn('workLoop发生错误', err)
+      }
       workInProgress = null
     }
   } while (true)

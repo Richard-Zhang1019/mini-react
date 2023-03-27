@@ -2,6 +2,7 @@ import path from 'path'
 import fs from 'fs'
 import ts from 'rollup-plugin-typescript2'
 import cjs from '@rollup/plugin-commonjs'
+import replace from '@rollup/plugin-replace'
 
 // 获取包的路径
 const pakPath = path.resolve(__dirname, '../../packages')
@@ -25,6 +26,9 @@ export function getPkgJson(pkgName) {
   return JSON.parse(str)
 }
 
-export function getRollupPlugins({ typescript = {} } = {}) {
+export function getRollupPlugins({
+  alias = { __DEV__: true },
+  typescript = {}
+} = {}) {
   return [cjs(), ts(typescript)]
 }
