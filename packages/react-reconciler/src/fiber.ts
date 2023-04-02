@@ -68,6 +68,7 @@ export const createWorkInProgress = (
 ): FiberNode => {
   let wip = current.alternate
 
+  // 判断当前是否有wip节点
   if (wip === null) {
     // 说明为mount
     wip = new FiberNode(current.tag, pendingProps, current.key)
