@@ -1,5 +1,5 @@
 import { Props, Key, Ref } from 'shared/ReactTypes'
-import { WorkTag } from './WorkTags'
+import { WorkTag } from './workTags'
 import { Flags, NoFlags } from './fiberFlags'
 import { Container } from 'hostConfig'
 

@@ -1,5 +1,5 @@
 import { FiberNode } from './fiber'
-import { HostComponent, HostRoot, HostText } from './WorkTags'
+import { HostComponent, HostRoot, HostText } from './workTags'
 
 // 递归中的 递
 export const beginWork = (wip: FiberNode) => {

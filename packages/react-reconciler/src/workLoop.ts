@@ -1,7 +1,7 @@
 import { completeWork } from './completeWork'
 import { createWorkInProgress, FiberNode, FiberRootNode } from './fiber'
 import { beginWork } from './beginWork'
-import { HostRoot } from './WorkTags'
+import { HostRoot } from './workTags'
 
 let workInProgress: FiberNode | null = null
 
